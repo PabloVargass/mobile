@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/wf"></ion-back-button></ion-buttons>
+    <ion-title>Nueva Orden de Trabajo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-input formControlName="code" placeholder="N° de orden"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="operator" placeholder="Nombre del operador"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="company" placeholder="Nombre de la empresa"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="client_id" placeholder="ID Cliente"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea formControlName="description" placeholder="Descripción"></ion-textarea>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" [disabled]="form.invalid || loading">Ingresar</ion-button>
+  </form>
+</ion-content>

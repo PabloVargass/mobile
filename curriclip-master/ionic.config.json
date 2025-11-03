@@ -1,0 +1,9 @@
+{
+  "name": "curriclip-master",
+  "type": "angular",
+  "integrations": {},
+  "server": {
+    "port": 8100,
+    "ssl": false
+  }
+}

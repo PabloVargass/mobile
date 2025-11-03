@@ -1,0 +1,120 @@
+ion-content {
+  --background: linear-gradient(180deg, #0f2027, #203a43, #2c5364); /* Fondo degradado moderno */
+  color: #f1f1f1;
+}
+
+/* Tarjetas de usuario */
+ion-card {
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ion-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 25px rgba(0, 255, 150, 0.4);
+}
+
+/* Header */
+ion-header {
+  --background: #00bfa5;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+ion-title {
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Avatar de usuario */
+ion-avatar img {
+  border: 3px solid #00bfa5;
+  padding: 3px;
+  border-radius: 50%;
+}
+
+/* Chips de estado */
+ion-chip {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+ion-chip[color="warning"] {
+  background: #ffcc00;
+  color: #222;
+}
+
+ion-chip[color="success"] {
+  background: #00c853;
+  color: #fff;
+}
+
+ion-chip[color="primary"] {
+  background: #42a5f5;
+  color: #fff;
+}
+
+ion-chip[color="danger"] {
+  background: #e53935;
+  color: #fff;
+}
+
+/* Botón cerrar sesión */
+ion-button[color="danger"] {
+  --background: linear-gradient(90deg, #ff5252, #ff1744);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255, 23, 68, 0.5);
+}
+
+ion-button[color="danger"]:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(255, 23, 68, 0.7);
+}
+
+/* Tarjeta de órdenes */
+ion-card-content p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+}
+
+ion-card-content p strong {
+  color: #00e5ff;
+}
+
+/* Segmentos */
+ion-segment {
+  --background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+}
+
+ion-segment-button {
+  --color-checked: #00e5ff;
+  --indicator-color: #00e5ff;
+  color: #f1f1f1;
+  font-weight: 600;
+}
+
+/* Buscador */
+ion-searchbar {
+  --background: rgba(255, 255, 255, 0.1);
+  --placeholder-color: #ddd;
+  --color: #fff;
+  border-radius: 15px;
+}
+
+/* Ícono cuando no hay órdenes */
+ion-icon[name="folder-open-outline"] {
+  color: #9e9e9e;
+}
+
+p {
+  color: #ccc;
+}

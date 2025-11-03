@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/wf"></ion-back-button></ion-buttons>
+    <ion-title>Detalle de Orden</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card *ngIf="data">
+    <ion-card-header>
+      <ion-card-title>{{ data?.code }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Cliente:</strong> {{ data?.client?.name || '-' }}</p>
+      <p><strong>Empresa:</strong> {{ data?.company?.name || '-' }}</p>
+      <p><strong>Dirección:</strong> {{ data?.address || '-' }}</p>
+      <p><strong>Descripción:</strong> {{ data?.description || '-' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <wf-evidence-uploader label="Foto Antes" (fileSelected)="onBefore($event)"></wf-evidence-uploader>
+  <ion-item lines="none">
+    <ion-textarea placeholder="Notas (Antes)" [(ngModel)]="notesBefore"></ion-textarea>
+  </ion-item>
+  <ion-button expand="block" (click)="upload('before')" [disabled]="uploading">Subir 'Antes'</ion-button>
+
+  <wf-evidence-uploader label="Foto Después" (fileSelected)="onAfter($event)"></wf-evidence-uploader>
+  <ion-item lines="none">
+    <ion-textarea placeholder="Notas (Después)" [(ngModel)]="notesAfter"></ion-textarea>
+  </ion-item>
+  <ion-button expand="block" (click)="upload('after')" [disabled]="uploading">Subir 'Después'</ion-button>
+
+  <ion-button expand="block" color="success" class="ion-margin-top" (click)="markDone()">
+    Marcar como completada
+  </ion-button>
+
+</ion-content>

@@ -1,0 +1,48 @@
+### Universal ###
+# Common files that should be ignored in all projects
+
+# Logs
+*.log
+# Temporary files
+*.tmp
+*~
+
+*.bak
+# Environment files (containing secrets, API keys, credentials)
+.env
+*.env
+.env.*
+
+# Local configuration that shouldn't be shared
+*.local
+
+# .NET build outputs and development files
+
+bin/
+obj/
+*.user
+*.userosscache
+*.sln.docstates
+
+.vs/
+*_i.c
+*_p.c
+*.ncb
+*.suo
+
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+
+*.log
+*.lib
+*.sbr
+*.sdf
+packages/
+
+TestResults/
+[Bb]in/
+[Dd]ebug/
+[Rr]elease/

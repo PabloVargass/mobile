@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Lista de Órdenes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- === Encabezado visual del usuario logueado === -->
+  <ion-card *ngIf="usuario" class="ion-text-center ion-margin-bottom">
+    <ion-card-header>
+      <ion-avatar class="ion-margin-auto" style="width:80px; height:80px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Usuario">
+      </ion-avatar>
+      <ion-card-title class="ion-padding-top">
+        Bienvenido,
+        <strong>{{ usuario.correo || usuario.NOMBRE || 'Empleado' }}</strong> 👋
+
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{ usuario.CORREO }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-chip [color]="usuario.FK_ID_ROL === 1 ? 'primary' : 'tertiary'">
+        <ion-icon name="person-circle" color="light"></ion-icon>
+        <ion-label>{{ usuario.FK_ID_ROL === 1 ? 'Administrador' : 'Empleado' }}</ion-label>
+      </ion-chip>
+
+      <ion-button expand="block" color="danger" (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Cerrar sesión
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- === Buscador === -->
+  <ion-searchbar
+    [(ngModel)]="q"
+    (ionInput)="apply()"
+    placeholder="Buscar por N° orden, cliente o dirección..."
+    class="ion-margin-bottom">
+  </ion-searchbar>
+
+  <!-- === Filtros por estado === -->
+  <ion-segment [(ngModel)]="status" (ionChange)="load()" class="ion-margin-bottom">
+    <ion-segment-button value="">Todos</ion-segment-button>
+    <ion-segment-button value="pending">Pendiente</ion-segment-button>
+    <ion-segment-button value="progress">En progreso</ion-segment-button>
+    <ion-segment-button value="done">Completada</ion-segment-button>
+  </ion-segment>
+
+  <!-- === Lista de órdenes === -->
+  <ion-list *ngIf="filtered.length > 0; else noOrders">
+    <ion-card *ngFor="let o of filtered" (click)="go(o)" class="ion-margin-bottom">
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-label>
+            <h2>
+              <strong>Folio: </strong>{{ o.code }}
+            </h2>
+            <ion-chip [color]="chipColor(o.status)" class="ion-margin-top">
+              <ion-label>{{ label(o.status) }}</ion-label>
+            </ion-chip>
+          </ion-label>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-card-content>
+  <p><strong>Cliente:</strong> {{ o.client?.name || '-' }}</p>
+  <p><strong>Dirección:</strong> {{ o.address || '-' }}</p>
+  <p><strong>Fecha Agendada:</strong> {{ o.fechaAgendada || '-' }}</p>
+  <p><strong>Fecha Finalización:</strong> {{ o.fechaFinalizado || '-' }}</p>
+  <p><strong>Horas de Trabajo:</strong> {{ o.hours || 0 }}</p>
+  <p><strong>Observaciones:</strong> {{ o.description || 'Sin observaciones' }}</p>
+
+  <!-- 🔹 BOTÓN CAMBIAR ESTADO -->
+  <ion-button
+    expand="block"
+    shape="round"
+    fill="solid"
+    [color]="o.status === 'pending' ? 'warning' :
+              o.status === 'progress' ? 'tertiary' : 'success'"
+    (click)="cambiarEstado(o); $event.stopPropagation()"
+    [disabled]="o.status === 'done'">
+    <ion-icon
+      [name]="o.status === 'pending' ? 'play-outline' :
+               o.status === 'progress' ? 'checkmark-done-outline' :
+               'checkmark-circle-outline'"
+      slot="start">
+    </ion-icon>
+    {{
+      o.status === 'pending' ? 'Marcar como En Proceso' :
+      o.status === 'progress' ? 'Marcar como Completada' :
+      'Completada ✅'
+    }}
+      </ion-button>
+    </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+
+  <!-- === Mensaje si no hay órdenes === -->
+  <ng-template #noOrders>
+    <div class="ion-text-center ion-margin-top">
+      <ion-icon name="folder-open-outline" size="large" color="medium"></ion-icon>
+      <p>No hay órdenes registradas</p>
+    </div>
+  </ng-template>
+</ion-content>
